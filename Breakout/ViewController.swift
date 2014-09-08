@@ -116,15 +116,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
 
                 if deletedBlockArray.count == blockCount
                 {
-                    for block in blockArray
-                    {
-                        block.hidden = false
-                        collisionBehavior.addItem(block)
-                        dynamicAnimator.updateItemUsingCurrentState(block)
-                        block.numberOfHits = 0
-                        block.backgroundColor = UIColor.redColor()
-                    }
-                    deletedBlockArray.removeAll(keepCapacity: false)
+                    createLevelTwo()
                 }
             }
         }
@@ -134,11 +126,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     {
         if p.y > paddle.center.y
         {
-            ballBehavior.resistance = 100.0
-            ball.center = CGPointMake(150, 250)
-            ball.hidden = true
-            startButton.hidden = false
-            dynamicAnimator.updateItemUsingCurrentState(ball)
+            resetBall()
 
             for block in deletedBlockArray
             {
@@ -165,8 +153,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         dynamicAnimator.updateItemUsingCurrentState(ball)
         ball.hidden = false
         var pushBehavior = UIPushBehavior(items: [ball], mode: UIPushBehaviorMode.Instantaneous)
-        pushBehavior.magnitude = 0.1
-        pushBehavior.angle = 1.0
+        pushBehavior.magnitude = 0.2
+        pushBehavior.angle = 1.1
         pushBehavior.active = true
         dynamicAnimator.addBehavior(pushBehavior)
 
@@ -177,6 +165,53 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     {
         paddle.center = CGPointMake(sender.locationInView(view).x, paddle.center.y)
         dynamicAnimator.updateItemUsingCurrentState(paddle)
+    }
+
+    func resetBall()
+    {
+        ballBehavior.resistance = 100.0
+        ball.center = CGPointMake(150, 250)
+        ball.hidden = true
+        startButton.hidden = false
+        dynamicAnimator.updateItemUsingCurrentState(ball)
+    }
+
+    func createLevelTwo()
+    {
+        resetBall()
+
+        deletedBlockArray.removeAll(keepCapacity: false)
+        blockArray.removeAll(keepCapacity: false)
+        blockCount = 0
+
+        var x = 4 as CGFloat
+        var y = 5 as CGFloat
+
+        for i in 1...5
+        {
+            for e in 1...10
+            {
+                var blockView = CustomView(frame: CGRectMake(x, y, 26, 10))
+                blockView.backgroundColor = UIColor.blueColor()
+                view.addSubview(blockView)
+                collisionBehavior.addItem(blockView)
+
+                blockArray.append(blockView)
+                blockCount++
+
+                x += 30
+            }
+
+            x = 4
+            y += 15
+        }
+
+        var blockBehavior = UIDynamicItemBehavior(items: blockArray)
+        blockBehavior.density = 10000
+        blockBehavior.elasticity = 1.0
+        blockBehavior.allowsRotation = false
+        dynamicAnimator.addBehavior(blockBehavior)
+
     }
 
 }
