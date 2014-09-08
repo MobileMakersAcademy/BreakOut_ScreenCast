@@ -19,7 +19,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
     var dynamicAnimator = UIDynamicAnimator()
     var ballBehavior = UIDynamicItemBehavior()
     var collisionBehavior = UICollisionBehavior()
-    var blockCount = 0
                             
     @IBOutlet weak var startButton: UIButton!
     
@@ -42,8 +41,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
 
                 blockArray.append(blockView)
                 allViewsArray.append(blockView)
-
-                blockCount++
 
                 x += 60
             }
@@ -105,17 +102,6 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
                 collisionBehavior.removeItem(block)
                 dynamicAnimator.updateItemUsingCurrentState(block)
                 deletedBlockArray.append(block)
-
-                if deletedBlockArray.count == blockCount
-                {
-                    for block in blockArray
-                    {
-                        block.hidden = false
-                        collisionBehavior.addItem(block)
-                        dynamicAnimator.updateItemUsingCurrentState(block)
-                    }
-                    deletedBlockArray.removeAll(keepCapacity: false)
-                }
             }
         }
     }
