@@ -11,11 +11,11 @@ import UIKit
 class ViewController: UIViewController, UICollisionBehaviorDelegate
 {
 
-    var blockArray : [UIView] = []
-    var allViewsArray : [UIView] = []
-    var deletedBlockArray : [UIView] = []
-    var paddle : UIView!
-    var ball : UIView!
+    var blockArray : [CustomView] = []
+    var allViewsArray : [CustomView] = []
+    var deletedBlockArray : [CustomView] = []
+    var paddle : CustomView!
+    var ball : CustomView!
     var dynamicAnimator = UIDynamicAnimator()
     var ballBehavior = UIDynamicItemBehavior()
     var collisionBehavior = UICollisionBehavior()
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         {
             for e in 1...5
             {
-                var blockView = UIView(frame: CGRectMake(x, y, 55, 20))
+                var blockView = CustomView(frame: CGRectMake(x, y, 55, 20))
                 blockView.backgroundColor = UIColor.redColor()
                 view.addSubview(blockView)
 
@@ -51,12 +51,12 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
             y += 25
         }
 
-        paddle = UIView(frame: CGRectMake(130, 430, 60, 30))
+        paddle = CustomView(frame: CGRectMake(130, 430, 60, 30))
         paddle.backgroundColor = UIColor.blackColor()
         view.addSubview(paddle)
         allViewsArray.append(paddle)
 
-        ball =  UIView(frame: CGRectMake(150, 250, 20, 20))
+        ball = CustomView(frame: CGRectMake(150, 250, 20, 20))
         ball.backgroundColor = UIColor.greenColor()
         view.addSubview(ball)
         allViewsArray.append(ball)
@@ -101,10 +101,18 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
         {
             if item1.isEqual(ball) && item2.isEqual(block) || item1.isEqual(block) && item2.isEqual(ball)
             {
-                block.hidden = true
-                collisionBehavior.removeItem(block)
-                dynamicAnimator.updateItemUsingCurrentState(block)
-                deletedBlockArray.append(block)
+                if block.numberOfHits == 0
+                {
+                    block.numberOfHits = 1
+                    block.backgroundColor = UIColor.yellowColor()
+                }
+                else
+                {
+                    block.hidden = true
+                    collisionBehavior.removeItem(block)
+                    dynamicAnimator.updateItemUsingCurrentState(block)
+                    deletedBlockArray.append(block)
+                }
 
                 if deletedBlockArray.count == blockCount
                 {
@@ -113,6 +121,8 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
                         block.hidden = false
                         collisionBehavior.addItem(block)
                         dynamicAnimator.updateItemUsingCurrentState(block)
+                        block.numberOfHits = 0
+                        block.backgroundColor = UIColor.redColor()
                     }
                     deletedBlockArray.removeAll(keepCapacity: false)
                 }
@@ -135,6 +145,14 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
                 block.hidden = false
                 collisionBehavior.addItem(block)
                 dynamicAnimator.updateItemUsingCurrentState(block)
+                block.numberOfHits = 0
+                block.backgroundColor = UIColor.redColor()
+            }
+
+            for aBlock in blockArray
+            {
+                aBlock.numberOfHits = 0
+                aBlock.backgroundColor = UIColor.redColor()
             }
 
             deletedBlockArray.removeAll(keepCapacity: false)

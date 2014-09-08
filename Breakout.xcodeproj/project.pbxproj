@@ -12,6 +12,7 @@
 		EC663D1E19BB6B8D0042A8DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC663D1C19BB6B8D0042A8DC /* Main.storyboard */; };
 		EC663D2019BB6B8D0042A8DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC663D1F19BB6B8D0042A8DC /* Images.xcassets */; };
 		EC663D2C19BB6B8D0042A8DC /* BreakoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC663D2B19BB6B8D0042A8DC /* BreakoutTests.swift */; };
+		ECA9F82019BDFFC500422CA2 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA9F81F19BDFFC500422CA2 /* CustomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		EC663D2519BB6B8D0042A8DC /* BreakoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreakoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC663D2A19BB6B8D0042A8DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC663D2B19BB6B8D0042A8DC /* BreakoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakoutTests.swift; sourceTree = "<group>"; };
+		ECA9F81F19BDFFC500422CA2 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = ../CustomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				EC663D1819BB6B8D0042A8DC /* AppDelegate.swift */,
 				EC663D1A19BB6B8D0042A8DC /* ViewController.swift */,
+				ECA9F81F19BDFFC500422CA2 /* CustomView.swift */,
 				EC663D1C19BB6B8D0042A8DC /* Main.storyboard */,
 				EC663D1F19BB6B8D0042A8DC /* Images.xcassets */,
 				EC663D1619BB6B8D0042A8DC /* Supporting Files */,
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA9F82019BDFFC500422CA2 /* CustomView.swift in Sources */,
 				EC663D1B19BB6B8D0042A8DC /* ViewController.swift in Sources */,
 				EC663D1919BB6B8D0042A8DC /* AppDelegate.swift in Sources */,
 			);
@@ -397,6 +401,7 @@
 				EC663D3119BB6B8D0042A8DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC663D3219BB6B8D0042A8DC /* Build configuration list for PBXNativeTarget "BreakoutTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +410,7 @@
 				EC663D3419BB6B8D0042A8DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
