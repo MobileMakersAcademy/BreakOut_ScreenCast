@@ -124,7 +124,7 @@ class ViewController: UIViewController, UICollisionBehaviorDelegate
 
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying, atPoint p: CGPoint)
     {
-        if p.y > paddle.center.y
+        if p.y > paddle.center.y && item.isEqual(ball) 
         {
             resetBall()
 
